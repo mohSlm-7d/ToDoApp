@@ -2,10 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import taskModel from './models/task.js';
 import tasksRouter from './routes/taskRoutes.js';
+import delistarAPIRouter from './routes/DeliStarApiRoutes.js';
 import cors from 'cors';
 
+
 const app = express();
-const port = 8080;
+const port = 10001;
 
 app.use(cors());
 
@@ -13,10 +15,10 @@ app.use(express.json());
 
 // DB Connection.
 // mongodb(connection protocol on mongo DB): // admin(username):admin(password) @localhost:27017 /todo(DB name that U want to connect to)
-// mongoose.connect('mongodb://admin:admin@localhost:27017/todo?authSource=admin',{
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
+mongoose.connect('mongodb://admin:admin@localhost:27017/todo?authSource=admin',{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 mongoose.connect('mongodb://admin:admin@localhost:27017/todo?authSource=admin');
 const db = mongoose.connection;
@@ -31,10 +33,13 @@ db.once('open', ()=>{
 });
 
 // db.model(taskModel);
-
+app.use("/DeliStarBackend", delistarAPIRouter);
 // db.collection(taskModel);
 
+
+
 app.use('/task', tasksRouter);
+
 app.listen(port, ()=>{
     console.log(`The server is listening on port ${port}`);
 });
