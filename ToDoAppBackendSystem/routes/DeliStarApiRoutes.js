@@ -21,7 +21,7 @@ delistarAPIRouter.post("/Account/user/register", async(req, res)=>{
             if(data.status !== '200'){
                 return res.status(parseInt(data.status)).json({
                     ...data,
-                    "servers": ["Java Jersey JAX-RS", "express.js"]
+                    // "servers": ["Java Jersey JAX-RS", "express.js"]
                 });
             }
             
