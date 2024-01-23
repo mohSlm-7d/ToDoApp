@@ -16,7 +16,7 @@ delistarAPIRouter.post("/Account/user/register", async(req, res)=>{
         }).
         then(response => response.json()).
         then(data => {
-            console.log(data);
+            console.log(Date().split(" ")[4], data);
             
             if(data.status !== '200'){
                 return res.status(parseInt(data.status)).json({
@@ -52,7 +52,7 @@ delistarAPIRouter.post("/Account/user/signin", async (req, res) => {
         }).
         then(response => response.json()).
         then(data => {
-            console.log(data);
+            console.log(Date().split(" ")[4], data);
             
             if(data.status !== '200'){
                 return res.status(parseInt(data.status)).json({
